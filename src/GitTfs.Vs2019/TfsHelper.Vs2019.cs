@@ -1,6 +1,3 @@
-using System;
-using System.Diagnostics;
-using System.IO;
 using GitTfs.VsCommon;
 using StructureMap;
 using Microsoft.VisualStudio.Setup.Configuration;
