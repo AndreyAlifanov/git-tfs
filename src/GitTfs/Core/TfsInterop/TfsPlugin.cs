@@ -24,11 +24,12 @@ namespace GitTfs.Core.TfsInterop
                 return pluginLoader.TryLoadVsPluginVersion(explicitVersion) ??
                        pluginLoader.Fail("Unable to load TFS version specified in GIT_TFS_CLIENT (" + explicitVersion + ")!");
             }
-            return pluginLoader.TryLoadVsPluginVersion("2015", true) ??
+            return pluginLoader.TryLoadVsPluginVersion("2019", true) ??
                    pluginLoader.TryLoadVsPluginVersion("2013") ??
                    pluginLoader.TryLoadVsPluginVersion("2012") ??
                    pluginLoader.TryLoadVsPluginVersion("2010") ??
                    pluginLoader.TryLoadVsPluginVersion("2015") ??
+                   pluginLoader.TryLoadVsPluginVersion("2019") ??
                    pluginLoader.Fail();
         }
 
@@ -38,6 +39,7 @@ namespace GitTfs.Core.TfsInterop
             private static string VsPluginAssemblyFolder { get; set; }
             private static readonly Dictionary<string, string> VisualStudioVersions = new Dictionary<string, string>()
             {
+                {"2019", "16.0" },
                 {"2015", "14.0" },
                 {"2013", "12.0" },
                 {"2012", "11.0" },

@@ -7,8 +7,9 @@ source https://www.nuget.org/api/v2/
 
 nuget nlog
 nuget LibGit2Sharp ~> 0.25.0
-nuget Microsoft.TeamFoundationServer.Client ~> 14.0
-nuget Microsoft.TeamFoundationServer.ExtendedClient ~> 14.0
+nuget Microsoft.TeamFoundationServer.Client ~> 15.131
+nuget Microsoft.TeamFoundationServer.ExtendedClient ~> 15.131
+nuget Microsoft.VisualStudio.Setup.Configuration.Interop ~> 1.16.30
 nuget Moq
 nuget WixSharp 1.0.22.3 framework: >= net40
 nuget structuremap 2.6.3
