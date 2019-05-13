@@ -1,6 +1,10 @@
+using System;
 using GitTfs.VsCommon;
 using StructureMap;
 using Microsoft.VisualStudio.Setup.Configuration;
+using System.IO;
+using Microsoft.TeamFoundation.Client;
+using Microsoft.VisualStudio.Services.Client;
 
 namespace GitTfs.Vs2019
 {
@@ -47,6 +51,14 @@ namespace GitTfs.Vs2019
             while (fetched > 0);
             return vsInstallDir;
         }
+        protected override TfsTeamProjectCollection GetTfsCredential(Uri uri)
+        {
+            var winCred = HasCredentials ?
+                new Microsoft.VisualStudio.Services.Common.WindowsCredential(GetCredential()) :
+                new Microsoft.VisualStudio.Services.Common.WindowsCredential(true);
+            var vssCred = new VssClientCredentials(winCred);
 
+            return new TfsTeamProjectCollection(uri, vssCred);
+        }
     }
 }

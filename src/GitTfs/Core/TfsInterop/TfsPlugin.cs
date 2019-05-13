@@ -8,6 +8,7 @@ using StructureMap.Graph;
 using System.IO;
 #if NETFRAMEWORK
 using Microsoft.Win32;
+using Microsoft.VisualStudio.Setup.Configuration;
 #endif
 
 namespace GitTfs.Core.TfsInterop
@@ -18,18 +19,14 @@ namespace GitTfs.Core.TfsInterop
         {
             var pluginLoader = new PluginLoader();
             var explicitVersion = Environment.GetEnvironmentVariable("GIT_TFS_CLIENT");
-            if (explicitVersion == "11") explicitVersion = "2012"; // GitTfs.Vs2012 was formerly called GitTfs.Vs11
             if (!string.IsNullOrEmpty(explicitVersion))
             {
                 return pluginLoader.TryLoadVsPluginVersion(explicitVersion) ??
                        pluginLoader.Fail("Unable to load TFS version specified in GIT_TFS_CLIENT (" + explicitVersion + ")!");
             }
             return pluginLoader.TryLoadVsPluginVersion("2019", true) ??
-                   pluginLoader.TryLoadVsPluginVersion("2013") ??
-                   pluginLoader.TryLoadVsPluginVersion("2012") ??
-                   pluginLoader.TryLoadVsPluginVersion("2010") ??
-                   pluginLoader.TryLoadVsPluginVersion("2015") ??
                    pluginLoader.TryLoadVsPluginVersion("2019") ??
+                   pluginLoader.TryLoadVsPluginVersion("2017") ??
                    pluginLoader.Fail();
         }
 
@@ -40,10 +37,7 @@ namespace GitTfs.Core.TfsInterop
             private static readonly Dictionary<string, string> VisualStudioVersions = new Dictionary<string, string>()
             {
                 {"2019", "16.0" },
-                {"2015", "14.0" },
-                {"2013", "12.0" },
-                {"2012", "11.0" },
-                {"2010", "10.0" },
+                {"2017", "15.0" }
             };
 
             public TfsPlugin TryLoadVsPluginVersion(string version, bool isVisualStudioRequired = false)
@@ -89,20 +83,27 @@ namespace GitTfs.Core.TfsInterop
                     return false;
                 }
 
-                var versionCode = VisualStudioVersions[version];
-                //doc: http://blogs.msdn.com/b/heaths/archive/2015/04/13/detection-keys-for-visual-studio-2015.aspx
-                var isInstalled = TryGetRegString(@"SOFTWARE\Wow6432Node\Microsoft\DevDiv\vs\Servicing\" + versionCode)
-                    || TryGetRegString(@"SOFTWARE\Microsoft\DevDiv\vs\Servicing\" + versionCode);
+                var ver = new Version(VisualStudioVersions[version]);
 
-                if (!isInstalled)
+                var query = new SetupConfiguration();
+                var query2 = (ISetupConfiguration2)query;
+                var e = query2.EnumAllInstances();
+
+                int fetched;
+                var instances = new ISetupInstance[1];
+                do
                 {
-                    Trace.WriteLine("Visual Studio " + version + " not found...");
+                    e.Next(1, instances, out fetched);
+                    if (fetched > 0)
+                    {
+                        var vsVer = new Version(instances[0].GetInstallationVersion());
+                        if (ver.Major == vsVer.Major && ver.Minor == vsVer.Minor)
+                            return true;
+                    }
                 }
-                else
-                {
-                    Trace.WriteLine("Visual Studio " + version + " detected...");
-                }
-                return isInstalled;
+                while (fetched > 0);
+
+                return false;
             }
 
             private static bool TryGetRegString(string path)
@@ -157,7 +158,6 @@ namespace GitTfs.Core.TfsInterop
                 { }
             }
         }
-
         public virtual void Initialize(IAssemblyScanner scan)
         {
             scan.AssemblyContainingType(GetType());
@@ -166,7 +166,6 @@ namespace GitTfs.Core.TfsInterop
         public virtual void Initialize(ConfigurationExpression config)
         {
         }
-
         public abstract bool IsViable();
     }
 }

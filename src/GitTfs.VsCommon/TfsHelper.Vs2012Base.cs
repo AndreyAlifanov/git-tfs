@@ -1,6 +1,4 @@
-using System;
 using System.Linq;
-using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.Server;
 using Microsoft.TeamFoundation.VersionControl.Client;
 using StructureMap;
@@ -49,14 +47,6 @@ namespace GitTfs.VsCommon
         public override IIdentity GetIdentity(string username)
         {
             return _bridge.Wrap<WrapperForIdentity, Identity>(Retry.Do(() => GroupSecurityService.ReadIdentity(SearchFactor.AccountName, username, QueryMembership.None)));
-        }
-
-        protected override TfsTeamProjectCollection GetTfsCredential(Uri uri)
-        {
-            return HasCredentials ?
-                new TfsTeamProjectCollection(uri, GetCredential(), new UICredentialsProvider()) :
-                new TfsTeamProjectCollection(uri, new UICredentialsProvider());
-#pragma warning restore 618
         }
     }
 }

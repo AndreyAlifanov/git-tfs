@@ -13,10 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitTfs", "GitTfs\GitTfs.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitTfsTest", "GitTfsTest\GitTfsTest.csproj", "{DDFB4746-2BCE-4B34-8E45-056324CF140D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitTfs.VsFake", "GitTfs.VsFake\GitTfs.VsFake.csproj", "{20C411E8-49C7-11E1-A776-3FE84824019B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitTfs.Vs2012", "GitTfs.Vs2012\GitTfs.Vs2012.csproj", "{699CE23D-8BBD-4C15-82E9-7A628ACCA4C6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{4A46FEEE-B8A2-4445-B9D1-8160520C7301}"
 	ProjectSection(SolutionItems) = preProject
 		..\doc\develop-on-mono.md = ..\doc\develop-on-mono.md
@@ -32,10 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChocolateyTemplates", "Choc
 		build\ChocolateyTemplates\chocolateyInstall.ps1 = build\ChocolateyTemplates\chocolateyInstall.ps1
 		build\ChocolateyTemplates\gittfs.nuspec = build\ChocolateyTemplates\gittfs.nuspec
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitTfs.Vs2013", "GitTfs.Vs2013\GitTfs.Vs2013.csproj", "{101D3C78-27CC-446A-98EC-E2DE88BF0641}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitTfs.Vs2015", "GitTfs.Vs2015\GitTfs.Vs2015.csproj", "{A7032F30-2C86-4BAF-8F62-33EB7BA917AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitTfs.Setup", "GitTfs.Setup\GitTfs.Setup.csproj", "{0A4AED21-360F-40CC-8870-B4D106B34CC1}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -53,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NDesk.Options", "NDesk.Opti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitTfs.Vs2019", "GitTfs.Vs2019\GitTfs.Vs2019.csproj", "{E9C1EE12-078B-4B63-B19E-61059E4D96AB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitTfs.VsFake", "GitTfs.VsFake\GitTfs.VsFake.csproj", "{C2F30847-443C-4D9A-925F-54B91D086B1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AnyCPU = Debug|AnyCPU
@@ -67,16 +61,6 @@ Global
 		{DDFB4746-2BCE-4B34-8E45-056324CF140D}.Debug|AnyCPU.Build.0 = Debug|Any CPU
 		{DDFB4746-2BCE-4B34-8E45-056324CF140D}.Release|AnyCPU.ActiveCfg = Release|Any CPU
 		{DDFB4746-2BCE-4B34-8E45-056324CF140D}.Release|AnyCPU.Build.0 = Release|Any CPU
-		{20C411E8-49C7-11E1-A776-3FE84824019B}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
-		{20C411E8-49C7-11E1-A776-3FE84824019B}.Debug|AnyCPU.Build.0 = Debug|Any CPU
-		{20C411E8-49C7-11E1-A776-3FE84824019B}.Release|AnyCPU.ActiveCfg = Release|Any CPU
-		{20C411E8-49C7-11E1-A776-3FE84824019B}.Release|AnyCPU.Build.0 = Release|Any CPU
-		{699CE23D-8BBD-4C15-82E9-7A628ACCA4C6}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
-		{699CE23D-8BBD-4C15-82E9-7A628ACCA4C6}.Release|AnyCPU.ActiveCfg = Release|Any CPU
-		{101D3C78-27CC-446A-98EC-E2DE88BF0641}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
-		{101D3C78-27CC-446A-98EC-E2DE88BF0641}.Release|AnyCPU.ActiveCfg = Release|Any CPU
-		{A7032F30-2C86-4BAF-8F62-33EB7BA917AF}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
-		{A7032F30-2C86-4BAF-8F62-33EB7BA917AF}.Release|AnyCPU.ActiveCfg = Release|Any CPU
 		{0A4AED21-360F-40CC-8870-B4D106B34CC1}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
 		{0A4AED21-360F-40CC-8870-B4D106B34CC1}.Release|AnyCPU.ActiveCfg = Release|Any CPU
 		{0A4AED21-360F-40CC-8870-B4D106B34CC1}.Release|AnyCPU.Build.0 = Release|Any CPU
@@ -88,6 +72,10 @@ Global
 		{E9C1EE12-078B-4B63-B19E-61059E4D96AB}.Debug|AnyCPU.Build.0 = Debug|Any CPU
 		{E9C1EE12-078B-4B63-B19E-61059E4D96AB}.Release|AnyCPU.ActiveCfg = Release|Any CPU
 		{E9C1EE12-078B-4B63-B19E-61059E4D96AB}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{C2F30847-443C-4D9A-925F-54B91D086B1B}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{C2F30847-443C-4D9A-925F-54B91D086B1B}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{C2F30847-443C-4D9A-925F-54B91D086B1B}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{C2F30847-443C-4D9A-925F-54B91D086B1B}.Release|AnyCPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

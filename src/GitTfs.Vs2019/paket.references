@@ -1,4 +1,4 @@
 Microsoft.TeamFoundationServer.Client
 Microsoft.TeamFoundationServer.ExtendedClient
 structuremap
-Microsoft.VisualStudio.Setup.Configuration
+Microsoft.VisualStudio.Setup.Configuration.Interop
